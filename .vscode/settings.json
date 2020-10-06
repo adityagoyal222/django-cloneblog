@@ -1,3 +1,5 @@
 {
-    "python.pythonPath": "C:\\Users\\goyal\\.conda\\envs\\djangoEnv\\python.exe"
+    "python.pythonPath": "C:\\Users\\goyal\\.conda\\envs\\djangoEnv\\python.exe",
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true
 }

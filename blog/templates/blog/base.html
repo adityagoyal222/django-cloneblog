@@ -1,10 +1,84 @@
+{% load static %}
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog</title>
+    <!-- BootStrap -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Medium Style Editor -->
+    <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css"
+      type="text/css"
+      media="screen"
+      charset="utf-8"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}" />
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans&family=David+Libre&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light techfont custom-navbar">
+        <div class="container">
+      <a class="navbar-brand bigbrand" href="{% url 'post_list' %}">My Blog</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="{% url 'post_list' }">About</a>
+          <a class="nav-item nav-link" href="https://www.github.com">GitHub</a>
+          <a class="nav-item nav-link" href="https://www.linkedin.com">LinkedIN</a>
+        </div>
+        <ul class="navbar-nav ml-auto">
+            
+            {% if user.is_authenticated %}
+                <a href="{% url 'post_new' %}">New Post</a>
+                <a href="{% url 'post_draft_list' %}">Drafts</a>
+                <a href="{% url 'logout' %}">Log Out</a>
+                <a>Welcome: {{ user.username }}</a>
+            {% else %}
+                <a href="{% url 'login' %}"><i class="fa fa-user" aria-hidden="true"></i></a>
+            {% endif %}
+                
+        </ul>
+      </div>
+      </div>
+    </nav>
     
-</body>
+    <!-- CONTENT BLOCK -->
+    <div class="content container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="blog_posts">
+                    
+                    {% block content %}
+                        
+                    {% endblock content %}
+                        
+                </div>
+            </div>
+        </div>
+    </div>
+  </body>
 </html>
