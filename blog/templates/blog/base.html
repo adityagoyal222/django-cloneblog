@@ -32,7 +32,7 @@
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light techfont custom-navbar">
         <div class="container">
-      <a class="navbar-brand bigbrand" href="{% url 'post_list' %}">My Blog</a>
+      <a class="navbar-brand bigbrand" href="{% url 'blog:post_list' %}">My Blog</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -46,22 +46,20 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-item nav-link" href="{% url 'post_list' }">About</a>
+          <a class="nav-item nav-link" href="{% url 'blog:about' %}">About</a>
           <a class="nav-item nav-link" href="https://www.github.com">GitHub</a>
           <a class="nav-item nav-link" href="https://www.linkedin.com">LinkedIN</a>
         </div>
-        <ul class="navbar-nav ml-auto">
-            
+        <div class="navbar-nav ml-auto">            
             {% if user.is_authenticated %}
-                <a href="{% url 'post_new' %}">New Post</a>
-                <a href="{% url 'post_draft_list' %}">Drafts</a>
-                <a href="{% url 'logout' %}">Log Out</a>
-                <a>Welcome: {{ user.username }}</a>
+                <a class="nav-item nav-link" href="{% url 'blog:post_new' %}">New Post</a>
+                <a class="nav-item nav-link" href="{% url 'blog:post_draft_list' %}">Drafts</a>
+                <a class="nav-item nav-link" href="{% url 'logout' %}">Log Out</a>
+                <a class="nav-item nav-link">Welcome: {{ user.username }}</a>
             {% else %}
                 <a href="{% url 'login' %}"><i class="fa fa-user" aria-hidden="true"></i></a>
             {% endif %}
-                
-        </ul>
+        </div>
       </div>
       </div>
     </nav>
